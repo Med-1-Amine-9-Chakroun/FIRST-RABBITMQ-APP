@@ -7,11 +7,11 @@ connection = pika.BlockingConnection(connection_parameters)
 
 channel = connection.channel()
 
-channel.exchange_declare(exchange='routing', exchange_type=ExchangeType.direct)
+channel.exchange_declare(exchange='mytopicexchange', exchange_type=ExchangeType.topic)
 
 message = "this message needs to be routed"
 
-channel.basic_publish(exchange='routing', routing_key='analyticsonly', body=message)
+channel.basic_publish(exchange='mytopicexchange', routing_key='user.europe.payments', body=message)
 
 print("sent message: ",message)    
 

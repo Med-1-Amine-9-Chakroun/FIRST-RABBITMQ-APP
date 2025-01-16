@@ -15,7 +15,7 @@ channel.exchange_declare(exchange="mytopicexchange", exchange_type=ExchangeType.
 
 queue = channel.queue_declare(queue="", exclusive=True)
 
-channel.queue_bind(exchange='mytopicexchange', queue=queue.method.queue, routing_key="*.europe.*")
+channel.queue_bind(exchange='mytopicexchange', queue=queue.method.queue, routing_key="user.#")
 
 channel.basic_consume(queue=queue.method.queue, auto_ack=True, on_message_callback=on_message_received)
 
